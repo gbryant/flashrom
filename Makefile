@@ -335,6 +335,11 @@ UNSUPPORTED_FEATURES += CONFIG_BUSPIRATE_SPI=yes
 else
 override CONFIG_BUSPIRATE_SPI = no
 endif
+ifeq ($(CONFIG_FERNVALE_SPI), yes)
+UNSUPPORTED_FEATURES += CONFIG_FERNVALE_SPI=yes
+else
+override CONFIG_FERNVALE_SPI = no
+endif
 ifeq ($(CONFIG_SERPROG), yes)
 UNSUPPORTED_FEATURES += CONFIG_SERPROG=yes
 else
@@ -671,6 +676,9 @@ CONFIG_OGP_SPI ?= yes
 # Always enable Bus Pirate SPI for now.
 CONFIG_BUSPIRATE_SPI ?= yes
 
+# Always enable Fernvale SPI, too
+CONFIG_FERNVALE_SPI ?= yes
+
 # Always enable Dediprog SF100 for now.
 CONFIG_DEDIPROG ?= yes
 
@@ -957,6 +965,12 @@ ifeq ($(CONFIG_BUSPIRATE_SPI), yes)
 FEATURE_CFLAGS += -D'CONFIG_BUSPIRATE_SPI=1'
 PROGRAMMER_OBJS += buspirate_spi.o
 NEED_SERIAL += CONFIG_BUSPIRATE_SPI
+endif
+
+ifeq ($(CONFIG_FERNVALE_SPI), yes)
+FEATURE_CFLAGS += -D'CONFIG_FERNVALE_SPI=1'
+PROGRAMMER_OBJS += fernvale_spi.o
+NEED_SERIAL += CONFIG_FERNVALE_SPI
 endif
 
 ifeq ($(CONFIG_DEDIPROG), yes)

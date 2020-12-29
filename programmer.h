@@ -70,6 +70,9 @@ enum programmer {
 #if CONFIG_BUSPIRATE_SPI == 1
 	PROGRAMMER_BUSPIRATE_SPI,
 #endif
+#if CONFIG_FERNVALE_SPI == 1
+       PROGRAMMER_FERNVALE_SPI,
+#endif
 #if CONFIG_DEDIPROG == 1
 	PROGRAMMER_DEDIPROG,
 #endif
@@ -531,6 +534,11 @@ int buspirate_spi_init(void);
 /* linux_mtd.c */
 #if CONFIG_LINUX_MTD == 1
 int linux_mtd_init(void);
+#endif
+
+/* fernvale_spi.c */
+#if CONFIG_FERNVALE_SPI == 1
+int fernvale_spi_init(void);
 #endif
 
 /* linux_spi.c */
